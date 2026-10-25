@@ -41,3 +41,23 @@ and optionally Sudoku+ and 2048. INSTALL.md has the links and tested versions.
 
 Tested on: PW5, firmware 5.18.6, KOReader v2026.07.1, Project: Title v3.8.3. Use at your own risk:
 jailbreaking can brick a Kindle, and Amazon can patch jailbreaks in firmware updates.
+
+## License and credits
+
+Everything in this repo is original work, © 2026 markokovac16, licensed under the
+**GNU AGPL-3.0** ([LICENSE](LICENSE)), the same license as KOReader, which these plugins run inside.
+
+This setup builds on other people's projects. They are **not included here**: INSTALL.md links to
+them, and each keeps its own license.
+
+| Project | Author | License |
+|---|---|---|
+| [KOReader](https://github.com/koreader/koreader) | KOReader contributors | AGPL-3.0 |
+| [Project: Title](https://github.com/joshuacant/ProjectTitle) | joshuacant | AGPL-3.0 |
+| [Sudoku+](https://github.com/Borisvl/sudokuplus.koplugin) (optional) | Borisvl | AGPL-3.0 |
+| [2048](https://codeberg.org/anserina/2048.koplugin) (optional) | anserina | MIT |
+| SpiderCat jailbreak, KPM, KOmpanion ([kindlemodding.org](https://kindlemodding.org)) | sparklerfish, notmarek and the Kindle modding community | see their pages |
+
+The plugins also use KOReader's built-in icons at runtime (none are copied here). **Bookerly** is
+Amazon's font. It's already on every Kindle and isn't distributed here. *Kindle* and *Paperwhite* are
+trademarks of Amazon. This project isn't affiliated with or endorsed by Amazon.
