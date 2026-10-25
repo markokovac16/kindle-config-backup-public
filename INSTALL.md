@@ -281,6 +281,10 @@ pdfimages -j vol.pdf pages/p && python3 tools/manga_convert.py pages "Series, Vo
 - **Restart vs exit:** while KOReader runs, Amazon's framework is stopped.
   - USB drive mode and Kindle-store books need ☰ → Exit → "Exit to Kindle" first (takes 30–60 s).
   - The stock power menu doesn't show; reboot with ☰ → Exit → Reboot.
+- **Power button does nothing while plugged into a computer.** Amazon's power daemon goes into
+  "drive mode" when a computer's USB port connects, and then ignores the button, even under KOReader
+  (`/var/log/messages` says `Drive mode on. Ignoring power button`). Unplug it, or charge from a wall
+  plug. Holding the button still force-restarts the Kindle.
 - **Frozen screen** usually means KOReader crashed. Look at the end of `/mnt/us/koreader/crash.log`.
   Restart it remotely with `setsid /mnt/us/koreader/koreader.sh --framework_stop &`. If it then
   says "startup script has been updated", tap Ignore.
