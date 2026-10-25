@@ -23,9 +23,11 @@ give the same result; other models may need different steps (check https://kindl
 
 ## 0. Before you start
 
-1. **Check the firmware.** Go to Settings → Device Options → Device Info. SpiderCat supports PW5
-   firmware **5.16.3 to 5.19.5** (as listed on kindlemodding.org). Outside that range, check
-   https://kindlemodding.org for the right jailbreak first.
+1. **Check the model and firmware.** Plug the Kindle in and run `python3 tools/check-device.py`,
+   or read Settings → Device Options → Device Info. Jailbreaks depend on both. This guide uses
+   **SpiderCat**, which kindlemodding.org lists for firmware **5.16.3 to 5.19.5**. If the check doesn't
+   list SpiderCat for your Kindle, use one of the jailbreaks it lists instead, following that one's page on
+   https://kindlemodding.org, then continue from step 2. Until then, keep the Kindle in airplane mode.
 2. **Make a full backup over USB.** This matters: the jailbreak needs the drive almost full, and
    when storage ran low the firmware **deleted 39 books** on its own.
    ```sh

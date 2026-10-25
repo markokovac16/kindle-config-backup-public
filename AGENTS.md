@@ -4,6 +4,57 @@ These notes are for whoever takes this over, person or coding agent. Read INSTAL
 what's installed and why. This file covers how the code works, how to change it safely, and the
 traps that cost time before.
 
+## Step 1, every time: check which Kindle is connected
+
+Jailbreaks, firmware tricks and even the KOReader build differ by Kindle model and firmware version.
+This repo was made and tested on **one** combination:
+- Kindle Paperwhite 5 (11th gen)
+- firmware 5.18.6
+- KOReader v2026.07.1
+
+Before you suggest or run anything, find out what the user actually has:
+
+```sh
+python3 tools/check-device.py                          # Kindle plugged in over USB (Mac)
+KINDLE_IP=192.168.1.50 python3 tools/check-device.py   # over SSH, once KOReader's SSH server runs
+```
+
+It changes nothing on the Kindle. It prints:
+- the model, from the serial number's model code (the same table KOReader uses);
+- the firmware, whether it's jailbroken, and whether Amazon's updater is blocked (over SSH);
+- the KOReader version and which plugins and patches are installed;
+- the free space.
+If the Kindle isn't jailbroken yet, it also lists the jailbreaks that
+[kindlemodding.org](https://kindlemodding.org/jailbreaks.json) currently says fit that model
+and firmware.
+
+If the script isn't available or can't read something, ask the user, or read it yourself:
+- **On the Kindle:** Settings → Device Options → Device Info shows the firmware version and serial number.
+- **Firmware over USB:** `cat /Volumes/Kindle/system/version.txt`, e.g. `Kindle 5.18.6 (458618 041)`.
+- **Over SSH:**
+  - firmware: `cat /etc/prettyversion.txt`
+  - model code: `cut -c4-6 /proc/usid` (serials starting with B or 9: `cut -c3-4`)
+  - KOReader version: `cat /mnt/us/koreader/git-rev`
+- **Model codes:** look them up in KOReader's `frontend/device/kindle/device.lua`.
+- **Privacy:** never print, paste or commit the full serial number. The model code is enough.
+
+What to do with the result:
+- **Every line OK:** follow INSTALL.md as written.
+- **Different firmware or model:** don't use INSTALL.md's jailbreak steps (SpiderCat) unless the
+  check lists SpiderCat for this Kindle.
+  - Follow the current page on kindlemodding.org for a jailbreak that fits, and tell the user which
+    one and why.
+  - Don't guess. A jailbreak run on the wrong firmware can fail, or worse.
+  - Until it's jailbroken, keep the Kindle in airplane mode so Amazon doesn't update it out of range.
+- **Different model:** the KOReader parts mostly carry over, but check them on the device:
+  - The home screen and patches assume a 1236×1648, 300 dpi touch screen with a warmth light.
+  - The swipe zones, layout sizes and the light/warmth sliders may need changes.
+  - Kindles with page-turn buttons, or without a warm light (the Basic models), have never been tested.
+  - Say what's untested before deploying.
+- **Newer KOReader:** see "Updating KOReader" below before deploying anything.
+- **Jailbroken, but Amazon's updater is ACTIVE:** stop and block it first. An update can remove
+  the jailbreak.
+
 ## The shape of it
 
 - **No build step.** Everything is Lua that KOReader loads at runtime. The repo mirrors where files

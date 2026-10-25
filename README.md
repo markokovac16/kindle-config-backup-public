@@ -34,7 +34,7 @@ people and coding agents alike.
 | `system/route-to-koreader.sh` | run once over SSH (MOBI/PDF → KOReader via KOmpanion) |
 | `system/Retag for KOReader.sh` | `/mnt/us/documents/` |
 | `backup/` | Kindle + Raspberry Pi (optional daily backup) |
-| `tools/` | runs on your computer (manga conversion, tests) |
+| `tools/` | runs on your computer: `check-device.py` (model, firmware and fitting jailbreaks), manga conversion, tests |
 
 **Not included, install them from their authors:** KOReader, KOmpanion (via KPM), Project: Title,
 and optionally Sudoku+ and 2048. INSTALL.md has the links and tested versions.
